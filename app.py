@@ -273,6 +273,35 @@ def clean_old_requests():
     conn.commit()
     conn.close()
 
+@app.route('/health')
+def health_check():
+    """Health check endpoint for deployment monitoring"""
+    try:
+        # Test database connection
+        conn = sqlite3.connect(DB_FILE)
+        cursor = conn.cursor()
+        cursor.execute('SELECT COUNT(*) FROM joke_requests')
+        count = cursor.fetchone()[0]
+        conn.close()
+        
+        # Test jokes file loading
+        with open(JOKES_FILE, 'r') as f:
+            jokes = [line.strip() for line in f.readlines() if line.strip()]
+        
+        return jsonify({
+            'status': 'healthy',
+            'database': 'connected',
+            'jokes_loaded': len(jokes),
+            'total_requests': count,
+            'timestamp': datetime.now().isoformat()
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'unhealthy',
+            'error': str(e),
+            'timestamp': datetime.now().isoformat()
+        }), 500
+
 @app.route('/get-joke')
 def get_joke():
     try:
