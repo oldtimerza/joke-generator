@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, send_from_directory, Response
+from flasgger import Swagger
 import random
 import time
 import os
@@ -6,6 +7,7 @@ import sqlite3
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
+Swagger(app)
 
 # HTML template for the React frontend
 HTML_TEMPLATE = """
@@ -275,7 +277,39 @@ def clean_old_requests():
 
 @app.route('/health')
 def health_check():
-    """Health check endpoint for deployment monitoring"""
+    """
+    Health check endpoint for deployment monitoring
+    ---
+    responses:
+      200:
+        description: API is healthy
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [healthy]
+            database:
+              type: string
+            jokes_loaded:
+              type: integer
+            total_requests:
+              type: integer
+            timestamp:
+              type: string
+      500:
+        description: API is unhealthy
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [unhealthy]
+            error:
+              type: string
+            timestamp:
+              type: string
+    """
     try:
         # Test database connection
         conn = sqlite3.connect(DB_FILE)
@@ -304,6 +338,24 @@ def health_check():
 
 @app.route('/get-joke')
 def get_joke():
+    """
+    Get a random joke
+    ---
+    responses:
+      200:
+        description: A random joke and the number of requests made today by the user.
+        schema:
+          type: object
+          properties:
+            joke:
+              type: string
+              description: The random joke.
+            requests_today:
+              type: integer
+              description: The number of jokes requested by the user today.
+      500:
+        description: Error fetching joke.
+    """
     try:
         # Get user IP
         user_ip = request.remote_addr
@@ -331,7 +383,29 @@ def get_joke():
 
 @app.route('/joke-stats')
 def joke_stats():
-    """Endpoint to see how many jokes user has requested in past 24 hours"""
+    """
+    Endpoint to see how many jokes user has requested in past 24 hours
+    ---
+    responses:
+      200:
+        description: Statistics about joke requests in the last 24 hours.
+        schema:
+          type: object
+          properties:
+            user_ip:
+              type: string
+              description: The IP address of the user.
+            jokes_requested_24h:
+              type: integer
+              description: The number of jokes requested by the user in the last 24 hours.
+            timestamps:
+              type: array
+              items:
+                type: number
+              description: A list of timestamps for each joke request in the last 24 hours.
+      500:
+        description: Error fetching joke statistics.
+    """
     try:
         user_ip = request.remote_addr
         clean_old_requests()
@@ -350,4 +424,4 @@ def joke_stats():
 if __name__ == '__main__':
     # Initialize database on startup
     init_db()
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=51362)
