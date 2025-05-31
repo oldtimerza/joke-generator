@@ -49,7 +49,7 @@ HTML_TEMPLATE = """
             margin-bottom: 40px;
         }
         .joke-button {
-            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
             color: #ffffff;
             padding: 18px 36px;
             font-size: 1.1rem;
@@ -60,16 +60,16 @@ HTML_TEMPLATE = """
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            box-shadow: 0 4px 14px 0 rgba(107, 114, 128, 0.3);
+            box-shadow: 0 4px 14px 0 rgba(236, 72, 153, 0.3);
         }
         .joke-button:hover {
-            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            background: linear-gradient(135deg, #be185d 0%, #9d174d 100%);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px 0 rgba(107, 114, 128, 0.4);
+            box-shadow: 0 6px 20px 0 rgba(236, 72, 153, 0.4);
         }
         .joke-button:active {
             transform: translateY(0);
-            box-shadow: 0 2px 8px 0 rgba(107, 114, 128, 0.3);
+            box-shadow: 0 2px 8px 0 rgba(236, 72, 153, 0.3);
         }
         .joke-button:disabled {
             background: #9ca3af;
@@ -158,7 +158,7 @@ HTML_TEMPLATE = """
 
             return (
                 <div className="container">
-                    <h1>🎭 Joke Generator</h1>
+                    <h1>🦄 Joke Generator</h1>
                     
                     <div className="joke-form">
                         <button 
