@@ -20,73 +20,107 @@ HTML_TEMPLATE = """
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 24px;
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            min-height: 100vh;
+            color: #374151;
         }
         .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: #f9fafb;
+            padding: 48px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid #e5e7eb;
         }
         h1 {
             text-align: center;
-            color: #333;
-            margin-bottom: 30px;
+            color: #1f2937;
+            margin-bottom: 40px;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .joke-form {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .joke-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: #ffffff;
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-weight: 700;
             border: none;
-            border-radius: 5px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 14px 0 rgba(107, 114, 128, 0.3);
         }
         .joke-button:hover {
-            background-color: #45a049;
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px 0 rgba(107, 114, 128, 0.4);
+        }
+        .joke-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px 0 rgba(107, 114, 128, 0.3);
         }
         .joke-button:disabled {
-            background-color: #cccccc;
+            background: #9ca3af;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 4px 14px 0 rgba(156, 163, 175, 0.2);
         }
         .joke-box {
-            background-color: #f9f9f9;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            min-height: 60px;
+            background-color: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 32px;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         .joke-text {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #333;
-        }
-        .loading {
-            color: #666;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: #374151;
+            font-weight: 500;
             font-style: italic;
         }
+        .loading {
+            color: #6b7280;
+            font-style: italic;
+            font-weight: 500;
+        }
         .error {
-            color: #d32f2f;
+            color: #dc2626;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            font-weight: 600;
         }
         .stats {
-            margin-top: 20px;
+            margin-top: 32px;
             text-align: center;
-            color: #666;
-            font-size: 14px;
+            color: #6b7280;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: #f3f4f6;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
         }
     </style>
 </head>
