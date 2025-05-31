@@ -98,6 +98,7 @@ CREATE TABLE joke_requests (
 - **Database**: SQLite3
 - **Styling**: CSS with modern design and responsive layout
 - **Error Handling**: Comprehensive error handling for API requests and database operations
+- **AI-Generated**: This entire application, including the code and deployment setup, was developed by an AI.
 
 ## Development
 
