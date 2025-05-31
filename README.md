@@ -16,7 +16,7 @@ A Flask web application with a React frontend that serves random jokes from a lo
 .
 ├── app.py              # Flask application with API endpoints
 ├── jokes.txt           # Collection of 30 jokes
-├── hello.sh            # Simple bash script that prints "hello world!"
+
 ├── jokes.db            # SQLite database (created automatically)
 ├── .gitignore          # Git ignore file
 └── README.md           # This file
@@ -77,12 +77,7 @@ curl http://localhost:5000/get-joke
 curl http://localhost:5000/joke-stats
 ```
 
-### Bash Script
-```bash
-# Make executable and run
-chmod +x hello.sh
-./hello.sh
-```
+
 
 ## Database Schema
 
@@ -121,7 +116,7 @@ The application automatically:
 ✅ Real-time statistics and counter  
 ✅ Error handling and loading states  
 ✅ Responsive design  
-✅ Bash script (hello.sh)  
+  
 
 ## License
 
